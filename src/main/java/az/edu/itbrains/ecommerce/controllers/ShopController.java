@@ -10,4 +10,23 @@ public class ShopController {
     public String shop(){
         return "shop.html";
     }
+
+
+    @GetMapping("/cart")
+    public String cart(){
+        return "cart.html";
+    }
+
+
+    @GetMapping("/checkout")
+    public String checkout(){
+        return "checkout.html";
+    }
+
+    @GetMapping("/shop/detail/{id}")
+    public String detail(){
+        return "detail.html";
+    }
+
+
 }
