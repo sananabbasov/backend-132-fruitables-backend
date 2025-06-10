@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{dashboard/layout}">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fruitables - Admin dashboard</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <div class="container-fluid">
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <a href="/dashboard/category/create">+ Yeni</a>
+                </h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Kateqoriya adı</th>
+                        <th scope="col">Düzəlişlər</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Mark</td>
+                        <td>
+                            <a class="btn btn-warning" href="/dashboard/category/update/1">Yenile</a>
+                            <a class="btn btn-danger" href="/dashboard/category/delete/1">Sil</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+</body>
+
+</html>

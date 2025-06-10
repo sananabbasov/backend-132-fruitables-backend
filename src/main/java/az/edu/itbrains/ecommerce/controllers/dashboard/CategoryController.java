@@ -24,7 +24,7 @@ public class CategoryController {
     public String index(Model model){
         List<CategoryDashboardDto> categoryDashboardDtoList = categoryService.getDashboardCategories();
         model.addAttribute("categories", categoryDashboardDtoList);
-        return "dashboard/category/category.html";
+        return "dashboard/category/index.html";
     }
 
     @GetMapping("/dashboard/category/create")

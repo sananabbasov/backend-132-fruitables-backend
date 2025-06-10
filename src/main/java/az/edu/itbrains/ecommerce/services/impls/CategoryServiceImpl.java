@@ -29,21 +29,50 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public boolean createCategory(CategoryCreateDto categoryCreateDto) {
-        return false;
+        try {
+            Category findCategory = categoryRepository.findByNameIgnoreCase(categoryCreateDto.getName());
+            if (findCategory != null){
+                return false;
+            }
+            Category category = new Category();
+            category.setName(categoryCreateDto.getName());
+            categoryRepository.save(category);
+            return true;
+        }catch (Exception e){
+            return  false;
+        }
     }
 
     @Override
     public CategoryUpdateDto getUpdatedCategory(Long id) {
-        return null;
+        Category category = categoryRepository.findById(id).orElseThrow();
+        if (category == null){
+            return null;
+        }
+        CategoryUpdateDto categoryUpdateDto = modelMapper.map(category, CategoryUpdateDto.class);
+        return categoryUpdateDto;
     }
 
     @Override
     public boolean updateCategory(Long id, CategoryUpdateDto categoryUpdateDto) {
-        return false;
+        try {
+            Category category = categoryRepository.findById(id).orElseThrow();
+            category.setName(categoryUpdateDto.getName());
+            categoryRepository.save(category);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean removeCategory(Long id) {
-        return false;
+        try {
+            Category category = categoryRepository.findById(id).orElseThrow();
+            categoryRepository.delete(category);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }
