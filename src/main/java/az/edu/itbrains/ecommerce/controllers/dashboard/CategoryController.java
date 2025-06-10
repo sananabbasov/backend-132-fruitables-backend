@@ -61,20 +61,20 @@ public class CategoryController {
     }
 
 
-    @GetMapping("/dashboard/category/remove/{id}")
+    @GetMapping("/dashboard/category/delete/{id}")
     public String remove(@PathVariable Long id, Model model){
         CategoryUpdateDto categoryUpdateDto = categoryService.getUpdatedCategory(id);
         model.addAttribute("category", categoryUpdateDto);
-        return "dashboard/category/remove.html";
+        return "dashboard/category/delete.html";
     }
 
-    @PostMapping("/dashboard/category/remove/{id}")
+    @PostMapping("/dashboard/category/delete/{id}")
     public String remove(@PathVariable Long id){
         boolean result = categoryService.removeCategory(id);
         if (result){
             return "redirect:/dashboard/categories";
         }
-        return "dashboard/category/remove.html";
+        return "dashboard/category/delete.html";
     }
 
 

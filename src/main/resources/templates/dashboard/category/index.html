@@ -26,11 +26,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Mark</td>
+                    <tr th:each="category : ${categories}">
+                        <td th:text="${category.name}">Mark</td>
                         <td>
-                            <a class="btn btn-warning" href="/dashboard/category/update/1">Yenile</a>
-                            <a class="btn btn-danger" href="/dashboard/category/delete/1">Sil</a>
+                            <a class="btn btn-warning" th:href="'/dashboard/category/update/'+${category.id}">Yenile</a>
+                            <a class="btn btn-danger" th:href="'/dashboard/category/delete/'+${category.id}">Sil</a>
                         </td>
                     </tr>
 
