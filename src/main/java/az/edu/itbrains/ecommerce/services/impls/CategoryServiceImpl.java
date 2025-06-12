@@ -75,4 +75,9 @@ public class CategoryServiceImpl implements CategoryService {
             return false;
         }
     }
+
+    @Override
+    public Category getCategoryById(Long categoryId) {
+        return categoryRepository.findById(categoryId).orElseThrow();
+    }
 }

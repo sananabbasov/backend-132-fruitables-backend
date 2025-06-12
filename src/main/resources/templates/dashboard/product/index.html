@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{dashboard/layout}">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fruitables - Admin dashboard</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <div class="container-fluid">
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <a href="/dashboard/product/create">+ Yeni</a>
+                </h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Şəkil</th>
+                        <th scope="col">Ad</th>
+                        <th scope="col">Qiymət</th>
+                        <th scope="col">Endirimli qiymət</th>
+                        <th scope="col">Miqdar</th>
+                        <th scope="col">Kateqoriya</th>
+                        <th scope="col">Düzəlişlər</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${products}">
+                        <td>
+                            <img width="40" height="40" th:src="${product.photoUrl}">
+                        </td>
+                        <td th:text="${product.name}">Mark</td>
+                        <td th:text="${product.price}">Mark</td>
+                        <td th:text="${product.discountPrice}">Mark</td>
+                        <td th:text="${product.quantity}">Mark</td>
+                        <td th:text="${product.category.name}">Mark</td>
+                        <td>
+                            <a class="btn btn-warning" th:href="'/dashboard/product/update/'+${product.id}">Yenile</a>
+                            <a class="btn btn-danger" th:href="'/dashboard/product/delete/'+${product.id}">Sil</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+</body>
+
+</html>

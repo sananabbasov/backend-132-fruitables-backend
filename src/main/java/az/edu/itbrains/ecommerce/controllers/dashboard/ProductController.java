@@ -1,8 +1,10 @@
 package az.edu.itbrains.ecommerce.controllers.dashboard;
 
+import az.edu.itbrains.ecommerce.dtos.category.CategoryDashboardDto;
 import az.edu.itbrains.ecommerce.dtos.product.ProductCreateDto;
 import az.edu.itbrains.ecommerce.dtos.product.ProductDashboardDto;
 import az.edu.itbrains.ecommerce.dtos.product.ProductUpdateDto;
+import az.edu.itbrains.ecommerce.services.CategoryService;
 import az.edu.itbrains.ecommerce.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,25 +19,31 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
+    private final CategoryService categoryService;
 
-    @GetMapping("/dashboard/categories")
+    @GetMapping("/dashboard/products")
     public String index(Model model){
         List<ProductDashboardDto> productDashboardDtoList = productService.getDashboardProducts();
-        model.addAttribute("categories", productDashboardDtoList);
+        model.addAttribute("products", productDashboardDtoList);
+
         return "dashboard/product/index.html";
     }
 
     @GetMapping("/dashboard/product/create")
-    public String create(){
+    public String create(Model model){
+        List<CategoryDashboardDto> categoryDashboardDtoList = categoryService.getDashboardCategories();
+        model.addAttribute("categories", categoryDashboardDtoList);
         return "dashboard/product/create.html";
     }
 
 
     @PostMapping("/dashboard/product/create")
-    public String create(ProductCreateDto productCreateDto){
+    public String create(ProductCreateDto productCreateDto, Model model){
+        List<CategoryDashboardDto> categoryDashboardDtoList = categoryService.getDashboardCategories();
+        model.addAttribute("categories", categoryDashboardDtoList);
         boolean result = productService.createProduct(productCreateDto);
         if (result){
-            return "redirect:/dashboard/categories";
+            return "redirect:/dashboard/products";
         }
         return "dashboard/product/create.html";
     }
@@ -43,16 +51,20 @@ public class ProductController {
 
     @GetMapping("/dashboard/product/update/{id}")
     public String update(@PathVariable Long id, Model model){
+        List<CategoryDashboardDto> categoryDashboardDtoList = categoryService.getDashboardCategories();
+        model.addAttribute("categories", categoryDashboardDtoList);
         ProductUpdateDto productUpdateDto = productService.getUpdatedProduct(id);
         model.addAttribute("product", productUpdateDto);
         return "dashboard/product/update.html";
     }
 
     @PostMapping("/dashboard/product/update/{id}")
-    public String update(@PathVariable Long id, ProductUpdateDto productUpdateDto){
+    public String update(@PathVariable Long id, ProductUpdateDto productUpdateDto, Model model){
+        List<CategoryDashboardDto> categoryDashboardDtoList = categoryService.getDashboardCategories();
+        model.addAttribute("categories", categoryDashboardDtoList);
         boolean result = productService.updateProduct(id, productUpdateDto);
         if (result){
-            return "redirect:/dashboard/categories";
+            return "redirect:/dashboard/products";
         }
         return "dashboard/product/update.html";
 
@@ -70,7 +82,7 @@ public class ProductController {
     public String remove(@PathVariable Long id){
         boolean result = productService.removeProduct(id);
         if (result){
-            return "redirect:/dashboard/categories";
+            return "redirect:/dashboard/products";
         }
         return "dashboard/product/delete.html";
     }

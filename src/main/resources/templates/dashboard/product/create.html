@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{dashboard/layout}">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fruitables - Admin dashboard</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <div class="container-fluid">
+
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="name">Ad</label>
+                        <input id="name" name="name" class="form-control" type="text" placeholder="Ad daxil edin">
+                    </div>
+                    <div class="form-group">
+                        <label for="photoUrl">Şəkil</label>
+                        <input id="photoUrl" name="photoUrl" class="form-control" type="text" placeholder="Şəkil daxil edin">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Qiymət</label>
+                        <input id="price" name="price" class="form-control" type="number" placeholder="Qiymət daxil edin">
+                    </div>
+                    <div class="form-group">
+                        <label for="discountPrice">Endirimli qiymət</label>
+                        <input id="discountPrice" name="discountPrice" class="form-control" type="number" placeholder="Endirimli qiymət daxil edin">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Miqdar</label>
+                        <input id="quantity" name="quantity" class="form-control" type="number" placeholder="Miqdar daxil edin">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryId">Kateqoriya</label>
+                        <select name="categoryId" class="form-control" id="categoryId">
+                            <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}">asd</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit" value="Yarat">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+</body>
+
+</html>
