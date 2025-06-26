@@ -2,6 +2,7 @@ package az.edu.itbrains.ecommerce.services.impls;
 
 import az.edu.itbrains.ecommerce.dtos.category.CategoryCreateDto;
 import az.edu.itbrains.ecommerce.dtos.category.CategoryDashboardDto;
+import az.edu.itbrains.ecommerce.dtos.category.CategoryShopDto;
 import az.edu.itbrains.ecommerce.dtos.category.CategoryUpdateDto;
 import az.edu.itbrains.ecommerce.models.Category;
 import az.edu.itbrains.ecommerce.repositories.CategoryRepository;
@@ -79,5 +80,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category getCategoryById(Long categoryId) {
         return categoryRepository.findById(categoryId).orElseThrow();
+    }
+
+    @Override
+    public List<CategoryShopDto> getShopCatgories() {
+        List<CategoryShopDto> categories = categoryRepository.getPopularCategories();
+        return categories;
     }
 }

@@ -1,6 +1,5 @@
-package az.edu.itbrains.ecommerce.models;
+package az.edu.itbrains.ecommerce.dtos.category;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoryShopDto {
     private Long id;
     private String name;
+    private Long count;
 }
+

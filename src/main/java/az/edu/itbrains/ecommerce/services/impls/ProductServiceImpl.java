@@ -2,14 +2,20 @@ package az.edu.itbrains.ecommerce.services.impls;
 
 import az.edu.itbrains.ecommerce.dtos.product.ProductCreateDto;
 import az.edu.itbrains.ecommerce.dtos.product.ProductDashboardDto;
+import az.edu.itbrains.ecommerce.dtos.product.ProductShopDto;
 import az.edu.itbrains.ecommerce.dtos.product.ProductUpdateDto;
 import az.edu.itbrains.ecommerce.models.Category;
 import az.edu.itbrains.ecommerce.models.Product;
+import az.edu.itbrains.ecommerce.payloads.PaginationPayload;
 import az.edu.itbrains.ecommerce.repositories.ProductRepository;
 import az.edu.itbrains.ecommerce.services.CategoryService;
 import az.edu.itbrains.ecommerce.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -91,5 +97,24 @@ public class ProductServiceImpl implements ProductService {
         }catch (Exception e){
             return false;
         }
+    }
+
+    @Override
+    public PaginationPayload<ProductShopDto> getShopProducts(String searchTerm, Long categoryId, Long sort, Long minPrice, Integer currentPage) {
+
+        currentPage = currentPage == null ? 1 : currentPage;
+
+        Pageable filter = PageRequest.of(currentPage-1,9, Sort.by("id").descending());
+        Page<Product> getFilteredProducts =  productRepository.findAll(filter);
+
+        List<ProductShopDto> productShopDtoList = getFilteredProducts.get().map(product -> modelMapper.map(product, ProductShopDto.class)).toList();
+
+        PaginationPayload<ProductShopDto> productShopDtoPaginationPayload = new PaginationPayload<>();
+        productShopDtoPaginationPayload.setModels(productShopDtoList);
+        productShopDtoPaginationPayload.setTotalPage(getFilteredProducts.getTotalPages());
+        productShopDtoPaginationPayload.setCurrentPage(currentPage);
+
+
+        return productShopDtoPaginationPayload;
     }
 }
