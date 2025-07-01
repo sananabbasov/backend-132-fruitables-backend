@@ -172,25 +172,25 @@
             <div class="col-lg-9">
               <div  class="row g-4 justify-content-center">
 
-                <div id="productCard" class="row g-4">
+<!--                <div id="productCard" class="row g-4">-->
 
-                </div>
-<!--                <div id="productCard" th:each="product : ${products.models}" class="col-md-6 col-lg-6 col-xl-4">-->
-<!--                  <div class="rounded position-relative fruite-item">-->
-<!--                    <div class="fruite-img">-->
-<!--                      <img src="/front/img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">-->
-<!--                    </div>-->
-<!--                    <div th:text="${product.category.name}" class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>-->
-<!--                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">-->
-<!--                      <h4 th:text="${product.name}">Grapes</h4>-->
-<!--                      <p th:text="${product.shortDescription}">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>-->
-<!--                      <div class="d-flex justify-content-between flex-lg-wrap">-->
-<!--                        <p th:text="${product.price} + ' azn / kg '" class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>-->
-<!--                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
 <!--                </div>-->
+                <div id="productCard" th:each="product : ${products.models}" class="col-md-6 col-lg-6 col-xl-4">
+                  <div class="rounded position-relative fruite-item">
+                    <div class="fruite-img">
+                      <img src="/front/img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
+                    </div>
+                    <div th:text="${product.category.name}" class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                      <h4 th:text="${product.name}">Grapes</h4>
+                      <p th:text="${product.shortDescription}">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                      <div class="d-flex justify-content-between flex-lg-wrap">
+                        <p th:text="${product.price} + ' azn / kg '" class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="col-12">
                   <div class="pagination d-flex justify-content-center mt-5">

@@ -6,6 +6,7 @@ import az.edu.itbrains.ecommerce.dtos.category.CategoryDashboardDto;
 import az.edu.itbrains.ecommerce.dtos.category.CategoryUpdateDto;
 import az.edu.itbrains.ecommerce.services.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/dashboard/categories")
+    @PreAuthorize("isAuthenticated()")
     public String index(Model model){
         List<CategoryDashboardDto> categoryDashboardDtoList = categoryService.getDashboardCategories();
         model.addAttribute("categories", categoryDashboardDtoList);
