@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
 >
   <head>
     <meta charset="utf-8" />
@@ -117,8 +117,11 @@
                   >3</span
                 >
               </a>
-              <a href="#" class="my-auto">
+              <a sec:authorize="!isAuthenticated()" href="/login" class="my-auto">
                 <i class="fas fa-user fa-2x"></i>
+              </a>
+              <a sec:authorize="isAuthenticated()" href="/logout" class="my-auto">
+                <i class="fas fa-sign-out-alt fa-2x"></i>
               </a>
             </div>
           </div>
@@ -320,51 +323,6 @@
     <script src="/front/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script>
-      const productCard = document.getElementById("productCard");
-     
 
-      function getProducts(models, currentPage) {
-        console.log("Salam")
-        let result = "";
-
-        models.forEach((element) => {
-          result += `
-                            <div class="col-md-6 col-lg-6 col-xl-4" >
-                                <div class="rounded position-relative fruite-item">
-                                    <div class="fruite-img">
-                                        <img src="/front/img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top" alt="" />
-                                    </div>
-                                    <div  class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
-                                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                        <h4>${element.name}</h4>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                        <div class="d-flex justify-content-between flex-lg-wrap">
-                                            <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-        });
-        return result;
-      }
-
-      let currentPage = 1;
-
-      $(document).ready(function () {
-        $(".button").click(function (e) {
-          $.ajax({
-            url: `http://localhost:8080/shop/filter?currentPage=${e.target.text}&categoryId=1`,
-            success: function (result) {
-              productCard.innerHTML = getProducts(result.models,1);
-              console.log(result)
-            },
-          });
-        });
-      });
-      currentPage++;
-    </script>
   </body>
 </html>

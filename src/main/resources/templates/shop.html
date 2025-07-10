@@ -172,9 +172,6 @@
             <div class="col-lg-9">
               <div  class="row g-4 justify-content-center">
 
-<!--                <div id="productCard" class="row g-4">-->
-
-<!--                </div>-->
                 <div id="productCard" th:each="product : ${products.models}" class="col-md-6 col-lg-6 col-xl-4">
                   <div class="rounded position-relative fruite-item">
                     <div class="fruite-img">
@@ -195,7 +192,7 @@
                 <div class="col-12">
                   <div class="pagination d-flex justify-content-center mt-5">
                     <a th:href="'?currentPage='+${products.currentPage-1}" class="rounded">&laquo;</a>
-                    <a th:each="i : ${#numbers.sequence(1,products.totalPage)}" th:text="${i}"  th:class="${products.currentPage == i} ?  'active rounded button': 'rounded button'">1</a>
+                    <a  th:each="i : ${#numbers.sequence(1,products.totalPage)}" th:text="${i}" th:href="'?currentPage='+${i}"  th:class="${products.currentPage == i} ?  'active rounded button': 'rounded button'">1</a>
                     <a th:href="'?currentPage='+${products.currentPage+1}" class="rounded">&raquo;</a>
                   </div>
                 </div>

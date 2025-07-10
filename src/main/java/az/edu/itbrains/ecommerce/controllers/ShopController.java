@@ -7,6 +7,7 @@ import az.edu.itbrains.ecommerce.services.CategoryService;
 import az.edu.itbrains.ecommerce.services.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.AntPathMatcher;
@@ -37,12 +38,14 @@ public class ShopController {
 
 
     @GetMapping("/cart")
+    @PreAuthorize("isAuthenticated()")
     public String cart(){
         return "cart.html";
     }
 
 
     @GetMapping("/checkout")
+    @PreAuthorize("isAuthenticated()")
     public String checkout(){
         return "checkout.html";
     }

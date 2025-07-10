@@ -34,6 +34,14 @@ public class AuthController {
         if (result.hasErrors()){
             return "auth/register.html";
         }
+        boolean registerResult = userService.registerUser(registerDto);
+        return "redirect:/login";
+    }
+
+    @GetMapping("/auth/emailConfirm")
+    public String confirm(String email, String token){
+
+        boolean result = userService.confirmEmail(email, token);
         return "redirect:/login";
     }
 
