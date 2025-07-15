@@ -181,10 +181,13 @@
                     <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                       <h4 th:text="${product.name}">Grapes</h4>
                       <p th:text="${product.shortDescription}">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                      <div class="d-flex justify-content-between flex-lg-wrap">
+                      <form method="post" action="/cart" class="d-flex justify-content-between flex-lg-wrap">
+                        <input type="hidden" name="productId" th:value="${product.id}">
                         <p th:text="${product.price} + ' azn / kg '" class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                      </div>
+                        <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">
+                          <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -196,7 +199,7 @@
                     <a th:href="'?currentPage='+${products.currentPage+1}" class="rounded">&raquo;</a>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

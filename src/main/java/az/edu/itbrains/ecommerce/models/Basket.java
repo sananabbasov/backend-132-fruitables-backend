@@ -1,5 +1,6 @@
 package az.edu.itbrains.ecommerce.models;
 
+import az.edu.itbrains.ecommerce.enums.OrderStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,5 +18,11 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int quantity;
+    @ManyToOne
+    private Product product;
+    @ManyToOne
+    private User user;
+
+
 
 }

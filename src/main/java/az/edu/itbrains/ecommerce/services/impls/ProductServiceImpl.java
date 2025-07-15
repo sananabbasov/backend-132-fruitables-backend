@@ -117,4 +117,9 @@ public class ProductServiceImpl implements ProductService {
 
         return productShopDtoPaginationPayload;
     }
+
+    @Override
+    public Product findProductById(Long productId) {
+        return productRepository.findById(productId).orElseThrow();
+    }
 }
