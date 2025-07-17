@@ -50,4 +50,14 @@ public class BasketServiceImpl implements BasketService {
             basketRepository.save(basket);
         }
     }
+
+    @Override
+    public void removeBasketItem(Long id) {
+        basketRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Basket> getUserBasket(String email) {
+        return null;
+    }
 }

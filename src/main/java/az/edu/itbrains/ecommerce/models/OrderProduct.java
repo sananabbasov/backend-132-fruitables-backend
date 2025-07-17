@@ -20,7 +20,7 @@ public class OrderProduct {
     private Long id;
     private Float price;
     private int quantity;
-    private Date orderDate;
+
 
     @ManyToOne
     private Order order;

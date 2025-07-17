@@ -122,4 +122,11 @@ public class ProductServiceImpl implements ProductService {
     public Product findProductById(Long productId) {
         return productRepository.findById(productId).orElseThrow();
     }
+
+    @Override
+    public void removeQuantityById(Long id, int quantity) {
+        Product product = productRepository.findById(id).orElseThrow();
+        product.setQuantity(product.getQuantity()-quantity);
+        productRepository.save(product);
+    }
 }

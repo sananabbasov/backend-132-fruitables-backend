@@ -23,4 +23,6 @@ public interface ProductService {
     PaginationPayload<ProductShopDto> getShopProducts(String searchTerm, Long categoryId, Long sort, Long minPrice, Integer currentPage);
 
     Product findProductById(Long productId);
+
+    void removeQuantityById(Long id, int quantity);
 }

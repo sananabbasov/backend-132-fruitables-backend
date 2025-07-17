@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -23,6 +24,7 @@ public class Order {
     private String city;
     private String postcode;
     private String phoneNumber;
+    private Date orderDate;
     @ManyToOne
     private User user;
 

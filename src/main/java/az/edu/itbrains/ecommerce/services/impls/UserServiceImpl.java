@@ -1,11 +1,13 @@
 package az.edu.itbrains.ecommerce.services.impls;
 
 import az.edu.itbrains.ecommerce.dtos.auth.RegisterDto;
+import az.edu.itbrains.ecommerce.dtos.user.UserDto;
 import az.edu.itbrains.ecommerce.models.User;
 import az.edu.itbrains.ecommerce.repositories.UserRepository;
 import az.edu.itbrains.ecommerce.services.EmailService;
 import az.edu.itbrains.ecommerce.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
     @Override
     public boolean registerUser(RegisterDto registerDto) {
@@ -63,5 +66,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByEmail(String userEmail) {
         return userRepository.findByEmail(userEmail);
+    }
+
+    @Override
+    public UserDto findUserDtoByEmail(String userEmail) {
+        User user = userRepository.findByEmail(userEmail);
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+        return userDto;
     }
 }
